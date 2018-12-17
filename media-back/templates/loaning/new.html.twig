@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Loaning{% endblock %}
+
+{% block body %}
+    <h1>Create new Loaning</h1>
+
+    {{ include('loaning/_form.html.twig') }}
+
+    <a href="{{ path('loaning_index') }}">back to list</a>
+{% endblock %}

@@ -1,0 +1,44 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<div style="text-align:center">
+  <h1>
+    Welcome to {{ title }}!
+  </h1>
+
+<section class="container">
+  <input [(ngModel)]="user" type="text" placeholder="Utilisateur">
+  <select [(ngModel)]="selectedType" (change)="filter()">
+    <option *ngFor="let i of types">{{i}}</option>
+  </select >
+  <!--<button (click)="filter()">Filtre</button>-->
+  <table class="table table-striped table-bordered">
+    <thead>
+      <tr>
+        <th>Titre</th>
+        <th>Auteur</th>
+        <th>Catégorie</th>
+        <th>Disponibilité</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let media of medias; let i = index">
+        <td>{{ media.title }}</td>
+        <td>{{ media.author }}</td>
+        <td>{{ media.type | uppercase }}</td>
+        <td>
+          <div *ngIf="media.end">
+            Retour le {{ media.end | date:'dd/MM/yyyy' }}
+            <span>(emprunté par {{ media.user}} )</span>
+          </div>
+          <button
+            (click)="saveLoaning(media.id, i)"
+            [disabled]="user.length < 4 || nbLoanings() > 3"
+            *ngIf="!media.end"
+            class="btn btn-primary btn-sm">Emprunter</button>
+
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+</section>
+<router-outlet></router-outlet>
