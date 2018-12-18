@@ -18,6 +18,16 @@ use Symfony\Component\Routing\Annotation\Route;
 class LoaningController extends AbstractController
 {
 
+
+  /**
+  * @Route("/history", name="loaning_history", methods="GET")
+  */
+  public function history(LoaningRepository $loaningRepository)
+  {
+    return new JsonResponse(
+      $loaningRepository->findAllPast());
+  }
+
   /**
  * @Route("/api", name="loaning_api", methods="POST")
  */

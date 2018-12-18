@@ -16,6 +16,7 @@ export class MediaService {
     return this.http.get(this.urlServer + 'media/json');
   }
 
+  // Enregisrement d'un emprunt
   newMediaLoaning(media_id: number, user: string) {
     return this.http.post(
       this.urlServer + 'loaning/api',
@@ -23,9 +24,8 @@ export class MediaService {
     );
   }
 
-   // filterByType(){
-   //     let url: string = this.urlServer + 'media/type/json';
-   //     return url += `?type=${this.selectedType}`;
-   //
-   // }
+  // Anciens emprunts
+  getPastLoanings() {
+    return this.http.get(this.urlServer + 'loaning/history');
+  }
 }
